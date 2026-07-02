@@ -13,7 +13,7 @@
     <path d="M360 520 C540 500 720 460 840 360 C920 292 980 230 1020 196" fill="none" stroke="#7C4DE0" stroke-width="10" stroke-linecap="round"/>
   </svg>
 </template>
-<x-dc data-props='{"darkSurface":{"editor":"enum","default":"Logo gradient","options":["Indigo navy","Logo gradient"],"tsType":"string"},"problemLayout":{"editor":"enum","default":"Split","options":["Split","Overlay"],"tsType":"string"}}'>
+<x-dc data-props='{"darkSurface":{"editor":"enum","default":"Indigo navy","options":["Indigo navy","Logo gradient"],"tsType":"string"},"problemLayout":{"editor":"enum","default":"Split","options":["Split","Overlay"],"tsType":"string"}}'>
 <helmet>
 <title>10Fold Founders — Build a thriving trades business that serves God's Kingdom</title>
 <meta name="description" content="A faith-led community of founders scaling their businesses, reclaiming their time, and building legacies that honor God.">
@@ -2220,14 +2220,14 @@ class Component extends DCLogic {
   }
 
   renderVals() {
-    const logo = (this.props.darkSurface ?? 'Logo gradient') === 'Logo gradient';
+    const logo = (this.props.darkSurface ?? 'Indigo navy') === 'Logo gradient';
     const heroBg = logo
       ? 'linear-gradient(165deg, #82AAD0 0%, #5E86B5 16%, #3C5C80 40%, #21384F 70%, #152A3C 100%)'
-      : 'linear-gradient(180deg, #1B2350 0%, #131A3C 100%)';
+      : '#1B2350';
     const bandBg = logo
       ? 'linear-gradient(150deg, #82AAD0 0%, #5E86B5 18%, #3C5C80 44%, #21384F 74%, #152A3C 100%)'
-      : 'linear-gradient(160deg, #1B2350 0%, #131A3C 100%)';
-    const sweepOpacity = logo ? 0.5 : 0.32;
+      : '#1B2350';
+    const sweepOpacity = logo ? 0.5 : 0;
     const overlay = (this.props.problemLayout ?? 'Overlay') === 'Overlay';
     const items = [
       { q: 'How do I know if this is for me?', embed: 'FAQ_Fit', code: 'y8Zzo2ykm9daNzcx' },
