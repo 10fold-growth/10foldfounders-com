@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>You're in. Two things before you go.</title>
+  <meta name="robots" content="noindex">
+  <!-- ANALYTICS: Meta pixel goes here. Fire the Lead event on THIS page load. -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- HERO -->
+<section style="background: var(--tf-gradient-founders); padding: 48px 20px 40px;">
+  <div style="max-width: 640px; margin: 0 auto; display: flex; flex-direction: column; gap: 14px;">
+    <span style="align-self: flex-start; background: var(--tf-mustard); color: var(--tf-ink); font-weight: 700; font-size: 12px; letter-spacing: 1.5px; text-transform: uppercase; padding: 7px 14px; border-radius: 9999px;">Seat saved</span>
+    <h1 style="margin: 0; font-family: var(--tf-font-headline); font-weight: 800; font-size: clamp(30px, 5vw, 44px); line-height: 1.1; letter-spacing: -0.3px; color: var(--tf-white); text-wrap: balance;">You're in. Two things before you go.</h1>
+    <p style="margin: 0; font-size: 17px; color: var(--tf-sky);">Your seat is saved for Tuesday, July 28 at 8pm ET.</p>
+  </div>
+</section>
+
+<section style="padding: 40px 20px 72px;">
+  <div style="max-width: 640px; margin: 0 auto; display: flex; flex-direction: column; gap: 20px;">
+
+    <!-- BLOCK 1: calendar -->
+    <div style="background: var(--tf-white); border: 1px solid var(--border-hairline); border-radius: 12px; padding: 26px 24px; display: flex; flex-direction: column; gap: 14px; animation: tfFadeUp 0.3s cubic-bezier(0.4,0,0.2,1);">
+      <h2 style="margin: 0; font-family: var(--tf-font-headline); font-weight: 700; font-size: 20px; color: var(--tf-ink);">1. Put it on your calendar</h2>
+      <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+        <button type="button" class="btn btn--sm btn--outline" id="cal-google">Google Calendar</button>
+        <button type="button" class="btn btn--sm btn--outline" id="cal-apple">Apple</button>
+        <button type="button" class="btn btn--sm btn--outline" id="cal-outlook">Outlook</button>
+      </div>
+    </div>
+
+    <!-- BLOCK 2: text reminder (only if they skipped the phone field) -->
+    <div id="phone-block" hidden style="background: var(--tf-white); border: 1px solid var(--border-hairline); border-radius: 12px; padding: 26px 24px; display: flex; flex-direction: column; gap: 14px; animation: tfFadeUp 0.35s cubic-bezier(0.4,0,0.2,1);">
+      <h2 style="margin: 0; font-family: var(--tf-font-headline); font-weight: 700; font-size: 20px; color: var(--tf-ink);">2. Want a text reminder?</h2>
+      <p style="margin: 0; font-size: 15px; line-height: 1.6; color: var(--tf-slate);">Drop your number and we'll text you 15 minutes before we start.</p>
+      <p id="phone-sent" hidden style="margin: 0; font-size: 15px; font-weight: 600; color: var(--state-success);">Got it. We'll text you Tuesday.</p>
+      <form id="phone-form" novalidate style="display: flex; flex-direction: column; gap: 12px;">
+        <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+          <div class="field" style="flex: 1; min-width: 200px;">
+            <input name="phone" type="tel" autocomplete="tel" placeholder="Mobile number">
+          </div>
+          <button type="submit" class="btn">Text me</button>
+        </div>
+        <p style="margin: 0; font-size: 11px; line-height: 1.5; color: var(--tf-slate);">By entering your number you agree to receive a text reminder about this workshop. Message and data rates may apply. Reply STOP to opt out.</p>
+      </form>
+    </div>
+
+    <!-- BLOCK 3: one question -->
+    <div style="background: var(--tf-white); border: 1px solid var(--border-hairline); border-radius: 12px; padding: 26px 24px; display: flex; flex-direction: column; gap: 14px; animation: tfFadeUp 0.4s cubic-bezier(0.4,0,0.2,1);">
+      <h2 style="margin: 0; font-family: var(--tf-font-headline); font-weight: 700; font-size: 20px; color: var(--tf-ink);"><span id="block-three-number">3</span>. One more thing, if you're willing</h2>
+      <p style="margin: 0; font-size: 15px; line-height: 1.6; color: var(--tf-slate);">What's the biggest thing standing between you and a business that runs without you?</p>
+      <p id="answer-sent" hidden style="margin: 0; font-size: 15px; font-weight: 600; color: var(--state-success);">Thank you. We read every answer, and it shapes what we spend the most time on.</p>
+      <form id="answer-form" novalidate style="display: flex; flex-direction: column; gap: 12px;">
+        <div class="field">
+          <textarea name="answer" rows="4" style="resize: vertical;"></textarea>
+        </div>
+        <div>
+          <button type="submit" class="btn btn--sm">Send it</button>
+        </div>
+        <p style="margin: 0; font-size: 13px; color: var(--tf-slate);">We read every answer, and it shapes what we spend the most time on.</p>
+      </form>
+    </div>
+
+    <p style="margin: 8px 0 0; font-size: 15px; line-height: 1.6; color: var(--tf-ink);">We'll be praying over the registrations before we go live. See you Tuesday.</p>
+  </div>
+</section>
+
+<!-- Minimal footer, no links -->
+<footer style="background: var(--tf-ink); padding: 32px 20px;">
+  <div style="max-width: 640px; margin: 0 auto; display: flex; flex-direction: column; gap: 12px;">
+    <img src="assets/10FoldFounders-dark-white.png" alt="10Fold Founders" style="width: 120px; height: auto;">
+    <p style="margin: 0; font-size: 12px; color: var(--tf-steel);">© 2026 10Fold Founders</p>
+  </div>
+</footer>
+
+<script>
+(function () {
+  'use strict';
+
+  /* Placeholder event details. CALENDAR LINKS: confirm date/time + join link before export. */
+  var event = {
+    title: '10Fold Founders workshop',
+    startUtc: '20260729T000000Z', // Jul 28, 2026, 8pm ET
+    endUtc: '20260729T004500Z',
+    description: 'Free live 45-minute working session with Arthur Tew. Join link: TBD',
+    location: 'Online (join link in your email)'
+  };
+
+  /* ?askphone=1 means they skipped the phone field on the registration form. */
+  var askPhone = new URLSearchParams(window.location.search).get('askphone') === '1';
+  document.getElementById('phone-block').hidden = !askPhone;
+  document.getElementById('block-three-number').textContent = askPhone ? '3' : '2';
+
+  function googleUrl() {
+    return 'https://calendar.google.com/calendar/render?action=TEMPLATE' +
+      '&text=' + encodeURIComponent(event.title) +
+      '&dates=' + event.startUtc + '/' + event.endUtc +
+      '&details=' + encodeURIComponent(event.description) +
+      '&location=' + encodeURIComponent(event.location);
+  }
+  function downloadIcs() {
+    var ics = ['BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//10Fold Founders//Workshop//EN',
+      'BEGIN:VEVENT', 'UID:workshop-' + event.startUtc + '@10foldfounders.com',
+      'DTSTAMP:' + event.startUtc, 'DTSTART:' + event.startUtc, 'DTEND:' + event.endUtc,
+      'SUMMARY:' + event.title, 'DESCRIPTION:' + event.description, 'LOCATION:' + event.location,
+      'END:VEVENT', 'END:VCALENDAR'].join('\r\n');
+    var url = URL.createObjectURL(new Blob([ics], { type: 'text/calendar' }));
+    var a = document.createElement('a');
+    a.href = url;
+    a.download = '10fold-founders-workshop.ics';
+    a.click();
+    URL.revokeObjectURL(url);
+  }
+
+  document.getElementById('cal-google').addEventListener('click', function () {
+    window.open(googleUrl(), '_blank');
+  });
+  document.getElementById('cal-apple').addEventListener('click', downloadIcs);
+  document.getElementById('cal-outlook').addEventListener('click', downloadIcs);
+
+  /* Phone reminder submit */
+  var phoneForm = document.getElementById('phone-form');
+  phoneForm.addEventListener('submit', function (e) {
+    e.preventDefault();
+    if (!phoneForm.phone.value.trim()) return;
+    // FORM ACTION: posts to the same GHL contact, endpoint TBD
+    phoneForm.hidden = true;
+    document.getElementById('phone-sent').hidden = false;
+  });
+
+  /* One-question submit */
+  var answerForm = document.getElementById('answer-form');
+  answerForm.addEventListener('submit', function (e) {
+    e.preventDefault();
+    if (!answerForm.answer.value.trim()) return;
+    // FORM ACTION: posts to the same GHL contact, endpoint TBD
+    answerForm.hidden = true;
+    document.getElementById('answer-sent').hidden = false;
+  });
+})();
+</script>
+</body>
+</html>

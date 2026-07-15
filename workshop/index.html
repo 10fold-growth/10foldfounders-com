@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Free live workshop from 10Fold Founders: build a business that serves your life</title>
+  <meta name="description" content="A free 45-minute live working session with Arthur Tew. Write the first page of a business that runs without running you. Tuesday, July 28 at 8pm ET.">
+  <meta name="robots" content="noindex">
+  <!-- ANALYTICS: Meta pixel goes here. Lead event fires on the thanks page, not on button click. -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- ============ SECTION 1: HERO (Founders mark gradient) ============ -->
+<section style="background: var(--tf-gradient-founders); padding: 40px 20px 56px;">
+  <div style="max-width: 1080px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 40px; align-items: start;">
+
+    <div style="display: flex; flex-direction: column; gap: 18px;">
+      <div style="display: flex; align-items: center; gap: 12px; flex-wrap: wrap;">
+        <span style="display: inline-flex; align-items: center; background: var(--tf-mustard); color: var(--tf-ink); font-family: var(--tf-font-body); font-weight: 700; font-size: 12px; letter-spacing: 1.5px; text-transform: uppercase; padding: 7px 14px; border-radius: 9999px;">Free live workshop</span>
+      </div>
+      <p style="margin: 0; color: var(--tf-steel); font-size: 15px; font-weight: 500;">Tuesday, July 28 at 8pm ET&nbsp;·&nbsp;45 minutes&nbsp;·&nbsp;live with Arthur Tew</p>
+
+      <!-- VARIANT A (faith): ?a=faith -->
+      <div class="hero-variant" data-variant="faith" hidden style="display: flex; flex-direction: column; gap: 14px;">
+        <h1 style="margin: 0; font-family: var(--tf-font-headline); font-weight: 800; font-size: clamp(34px, 5.4vw, 52px); line-height: 1.08; letter-spacing: -0.3px; color: var(--tf-white); text-wrap: balance;">What is God building through your business?</h1>
+        <p style="margin: 0; color: var(--tf-sky); font-size: 18px; line-height: 1.6;">Take 45 minutes and put words to it. You'll leave with the first page of it written down.</p>
+      </div>
+
+      <!-- VARIANT B (profit): ?a=profit, the default -->
+      <div class="hero-variant" data-variant="profit" hidden style="display: flex; flex-direction: column; gap: 14px;">
+        <h1 style="margin: 0; font-family: var(--tf-font-headline); font-weight: 800; font-size: clamp(34px, 5.4vw, 52px); line-height: 1.08; letter-spacing: -0.3px; color: var(--tf-white); text-wrap: balance;">The first step to a profitable seven-figure business. <span style="color: #C9B8F2;">Most founders skip it.</span></h1>
+        <p style="margin: 0; color: var(--tf-sky); font-size: 18px; line-height: 1.6;">It isn't more leads, more hours, or more trucks. It's a clear target. In 45 minutes you'll write yours down.</p>
+      </div>
+
+      <!-- VARIANT C (time): ?a=time -->
+      <div class="hero-variant" data-variant="time" hidden style="display: flex; flex-direction: column; gap: 14px;">
+        <h1 style="margin: 0; font-family: var(--tf-font-headline); font-weight: 800; font-size: clamp(34px, 5.4vw, 52px); line-height: 1.08; letter-spacing: -0.3px; color: var(--tf-white); text-wrap: balance;">Build a thriving business, not an all-consuming job.</h1>
+        <p style="margin: 0; color: var(--tf-sky); font-size: 18px; line-height: 1.6;">If the business would stop the day you stopped, this workshop is where that starts to change. 45 minutes, live.</p>
+      </div>
+
+      <p style="margin: 0; color: var(--tf-steel); font-size: 15px; line-height: 1.6;">A free live workshop from 10Fold Founders. You'll start your one-page Aspiration Statement: your why, your priorities, your perfect Tuesday, and real numbers on the life your business should be funding.</p>
+
+      <!-- HERO IMAGE: Arthur headshot, matches ad creative. Real photo only, no stock. -->
+      <div style="display: flex; align-items: center; gap: 14px; margin-top: 4px;">
+        <img src="uploads/headshot-1784030965763.avif" alt="Arthur Tew" width="64" height="64" style="width: 64px; height: 64px; border-radius: 50%; object-fit: cover; object-position: top; border: 2px solid rgba(201,220,240,0.4);">
+        <div style="display: flex; flex-direction: column; gap: 2px;">
+          <span style="color: var(--tf-white); font-weight: 600; font-size: 15px;">Arthur Tew</span>
+          <span style="color: var(--tf-steel); font-size: 13px;">Co-founder, 10Fold Founders</span>
+        </div>
+      </div>
+
+      <div style="border-top: 1px solid rgba(201,220,240,0.18); padding-top: 16px; margin-top: 6px; display: flex; flex-direction: column; gap: 6px;">
+        <p style="margin: 0; color: var(--tf-sky); font-size: 15px; line-height: 1.6; font-style: italic;">"Whatever you do, work at it with all your heart, as working for the Lord."</p>
+        <span style="color: var(--tf-mustard); font-size: 12px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase;">Colossians 3:23</span>
+      </div>
+    </div>
+
+    <!-- ============ SECTION 2: REGISTRATION FORM ============ -->
+    <div id="register" style="background: var(--tf-white); border-radius: 20px; padding: 28px 24px; box-shadow: 0 8px 32px rgba(19,26,60,0.28); display: flex; flex-direction: column; gap: 16px; animation: tfFadeUp 0.4s cubic-bezier(0.4,0,0.2,1);">
+      <h2 style="margin: 0; font-family: var(--tf-font-headline); font-weight: 700; font-size: 20px; color: var(--tf-ink);">Save your seat</h2>
+      <!-- FORM ACTION: GHL form embed or POST endpoint, TBD. On success, redirect to thanks.html -->
+      <form id="register-form" novalidate style="display: flex; flex-direction: column; gap: 14px;">
+        <div class="field" data-field="first_name">
+          <label for="first_name">First name</label>
+          <input id="first_name" name="first_name" autocomplete="given-name" required>
+          <span class="hint" hidden></span>
+        </div>
+        <div class="field" data-field="email">
+          <label for="email">Email</label>
+          <input id="email" name="email" type="email" autocomplete="email" required>
+          <span class="hint" hidden></span>
+        </div>
+        <div class="field" data-field="phone">
+          <label for="phone">Mobile (optional)</label>
+          <input id="phone" name="phone" type="tel" autocomplete="tel">
+          <span class="hint">Add your number and we'll text you one reminder 15 minutes before we go live. That's it.</span>
+        </div>
+        <p style="margin: 0; font-size: 11px; line-height: 1.5; color: var(--tf-slate);">By entering your number you agree to receive a text reminder about this workshop. Message and data rates may apply. Reply STOP to opt out.</p>
+        <button type="submit" class="btn btn--lg btn--full">Save my seat</button>
+      </form>
+      <p style="margin: 0; text-align: center; font-size: 13px; line-height: 1.55; color: var(--tf-slate);">Free. Live Tuesday, July 28. Can't make it live? Register anyway, the replay runs for 48 hours.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SECTION 3: WHAT YOU'LL DO ============ -->
+<section style="background: var(--tf-canvas); padding: 64px 20px;">
+  <div style="max-width: 680px; margin: 0 auto; display: flex; flex-direction: column; gap: 20px;">
+    <h2 style="margin: 0; font-family: var(--tf-font-headline); font-weight: 800; font-size: clamp(26px, 4vw, 36px); line-height: 1.15; letter-spacing: -0.3px; color: var(--tf-ink); text-wrap: balance;">This is a working session, not a lecture</h2>
+    <p style="margin: 0; font-size: 17px; color: var(--tf-slate);">In 45 minutes you will:</p>
+    <ul class="checklist">
+      <li><span class="mark" aria-hidden="true">✓</span><span>Flip the order most owners never flip: decide what the life should look like first, then point the business at it</span></li>
+      <li><span class="mark" aria-hidden="true">✓</span><span>Write the four parts of your Aspiration Statement: your why, your priorities, your perfect Tuesday, and your targets</span></li>
+      <li><span class="mark" aria-hidden="true">✓</span><span>Put real numbers on your schedule, your take-home, and the role you want to keep in your business</span></li>
+      <li><span class="mark" aria-hidden="true">✓</span><span>Take the two-week test: could the business run without you for two weeks? Name the gap, and see the path that closes it</span></li>
+      <li><span class="mark" aria-hidden="true">✓</span><span>Pray over the work. We close every session in prayer, and we mean it</span></li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============ SECTION 4: WHAT YOU LEAVE WITH ============ -->
+<section style="background: var(--tf-white); padding: 64px 20px; border-top: 1px solid var(--border-hairline); border-bottom: 1px solid var(--border-hairline);">
+  <div style="max-width: 980px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 44px; align-items: center;">
+    <div style="display: flex; flex-direction: column; gap: 16px;">
+      <h2 style="margin: 0; font-family: var(--tf-font-headline); font-weight: 800; font-size: clamp(26px, 4vw, 36px); line-height: 1.15; letter-spacing: -0.3px; color: var(--tf-ink); text-wrap: balance;">One page that runs the next nine phases</h2>
+      <p style="margin: 0; font-size: 16px; line-height: 1.6; color: var(--tf-ink);">The Aspiration Statement is a one-page picture of the life you're building: your why, what matters most, your perfect ordinary Tuesday, and the numbers that make it real. Founders in our community measure everything they build against it. You'll start yours live, in the session, with Arthur walking you through each part.</p>
+    </div>
+
+    <!-- The page's one hero graphic: styled Aspiration Statement card -->
+    <div aria-hidden="true" style="background: var(--tf-white); border: 1px solid var(--border-hairline); border-radius: 12px; box-shadow: 0 12px 40px rgba(27,35,80,0.10); padding: 28px 26px; max-width: 400px; margin: 0 auto; width: 100%; box-sizing: border-box; transform: rotate(-0.6deg);">
+      <div style="display: flex; align-items: baseline; justify-content: space-between; gap: 12px; border-bottom: 1px solid var(--border-hairline); padding-bottom: 14px; margin-bottom: 18px;">
+        <span style="font-family: var(--tf-font-headline); font-weight: 800; font-size: 16px; color: var(--tf-ink);">Aspiration Statement</span>
+        <span style="font-size: 11px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: var(--tf-purple);">Page 1</span>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 18px;">
+        <div style="display: flex; flex-direction: column; gap: 8px;">
+          <span style="font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--tf-purple);">Why</span>
+          <div style="height: 2px; background: repeating-linear-gradient(90deg, var(--tf-steel) 0 7px, transparent 7px 11px); opacity: 0.55; border-radius: 2px;"></div>
+          <div style="height: 2px; width: 72%; background: repeating-linear-gradient(90deg, var(--tf-steel) 0 7px, transparent 7px 11px); opacity: 0.55; border-radius: 2px;"></div>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 8px;">
+          <span style="font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--tf-purple);">Priorities</span>
+          <div style="height: 2px; background: repeating-linear-gradient(90deg, var(--tf-steel) 0 7px, transparent 7px 11px); opacity: 0.55; border-radius: 2px;"></div>
+          <div style="height: 2px; width: 84%; background: repeating-linear-gradient(90deg, var(--tf-steel) 0 7px, transparent 7px 11px); opacity: 0.55; border-radius: 2px;"></div>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 8px;">
+          <span style="font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--tf-purple);">Perfect day</span>
+          <div style="height: 2px; background: repeating-linear-gradient(90deg, var(--tf-steel) 0 7px, transparent 7px 11px); opacity: 0.55; border-radius: 2px;"></div>
+          <div style="height: 2px; width: 60%; background: repeating-linear-gradient(90deg, var(--tf-steel) 0 7px, transparent 7px 11px); opacity: 0.55; border-radius: 2px;"></div>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 8px;">
+          <span style="font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--tf-purple);">Targets</span>
+          <div style="display: flex; gap: 10px;">
+            <div style="flex: 1; height: 30px; background: var(--tf-cloud); border-radius: 8px;"></div>
+            <div style="flex: 1; height: 30px; background: var(--tf-cloud); border-radius: 8px;"></div>
+            <div style="flex: 1; height: 30px; background: var(--tf-cloud); border-radius: 8px;"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SECTION 5: YOUR HOST ============ -->
+<section style="background: var(--tf-canvas); padding: 64px 20px;">
+  <div style="max-width: 680px; margin: 0 auto; display: flex; gap: 24px; align-items: flex-start; flex-wrap: wrap;">
+    <img src="uploads/headshot-1784030965763.avif" alt="Arthur Tew" width="120" height="120" style="width: 120px; height: 120px; border-radius: 12px; object-fit: cover; object-position: top; flex: none;">
+    <div style="flex: 1; min-width: 260px; display: flex; flex-direction: column; gap: 10px;">
+      <span style="font-size: 12px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: var(--tf-purple);">Your host</span>
+      <h2 style="margin: 0; font-family: var(--tf-font-headline); font-weight: 800; font-size: 26px; color: var(--tf-ink);">Arthur Tew</h2>
+      <p style="margin: 0; font-size: 16px; line-height: 1.6; color: var(--tf-ink);">20+ years an entrepreneur. Over 400 businesses served, from Main Street to 30 Rockefeller. Multiple successful exits, including Eyenovia (NYSE, 2019). Co-founder of 10Fold Founders alongside Josh Staab and Sydney Andress. Father of 5 and son of Christ.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SECTION 6: NOT BUILDING ALONE (dark ink) ============ -->
+<section style="background: var(--tf-gradient-dark); padding: 64px 20px;">
+  <div style="max-width: 680px; margin: 0 auto; display: flex; flex-direction: column; gap: 16px;">
+    <span style="align-self: flex-start; background: rgba(124,77,224,0.28); color: #C9B8F2; font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; padding: 6px 12px; border-radius: 9999px;">Kingdom community</span>
+    <h2 style="margin: 0; font-family: var(--tf-font-headline); font-weight: 800; font-size: clamp(26px, 4vw, 36px); line-height: 1.15; letter-spacing: -0.3px; color: var(--tf-white); text-wrap: balance;">Most owners carry this alone. You don't have to.</h2>
+    <p style="margin: 0; font-size: 16px; line-height: 1.6; color: var(--tf-sky);">Half of CEOs report loneliness, and 61% say it hinders their performance. Building alone is common. It doesn't have to be permanent. Dozens of founders are already building with 10Fold, and this workshop is the front door.</p>
+  </div>
+</section>
+
+<!-- ============ SECTION 7: URGENCY STRIP (sky wash) ============ -->
+<section style="background: var(--tf-sky); padding: 36px 20px;">
+  <div style="max-width: 680px; margin: 0 auto; display: flex; flex-direction: column; gap: 14px; align-items: flex-start;">
+    <p style="margin: 0; font-family: var(--tf-font-headline); font-weight: 700; font-size: 19px; color: var(--tf-ink);">Live Tuesday, July 28 at 8pm ET.</p>
+    <p style="margin: 0; font-size: 15px; line-height: 1.6; color: var(--tf-ink);">The replay stays up for 48 hours after we finish, then it comes down. Registering gets you the live link and the replay.</p>
+    <p id="countdown" style="margin: 0; font-size: 13px; font-weight: 600; color: var(--tf-ink); opacity: 0.75;"></p>
+    <button type="button" class="btn js-scroll-to-form" style="min-width: 160px;">Save my seat</button>
+  </div>
+</section>
+
+<!-- ============ SECTION 8: FAQ ============ -->
+<section style="background: var(--tf-canvas); padding: 64px 20px;">
+  <div style="max-width: 680px; margin: 0 auto; display: flex; flex-direction: column; gap: 20px;">
+    <h2 style="margin: 0; font-family: var(--tf-font-headline); font-weight: 800; font-size: clamp(24px, 4vw, 32px); color: var(--tf-ink);">Questions, answered</h2>
+    <div id="faq-list" style="display: flex; flex-direction: column; gap: 8px;"></div>
+  </div>
+</section>
+
+<!-- ============ SECTION 9: FINAL CALL (dark ink) ============ -->
+<section style="background: var(--tf-gradient-dark); padding: 72px 20px;">
+  <div style="max-width: 680px; margin: 0 auto; display: flex; flex-direction: column; gap: 18px; align-items: flex-start;">
+    <h2 style="margin: 0; font-family: var(--tf-font-headline); font-weight: 800; font-size: clamp(28px, 4.5vw, 40px); line-height: 1.12; letter-spacing: -0.3px; color: var(--tf-white); text-wrap: balance;">45 minutes now, a clearer reason for all of it</h2>
+    <p style="margin: 0; font-size: 16px; line-height: 1.6; color: var(--tf-sky);">You've likely poured years into this business. Take 45 minutes and get honest about what it's all for. We'll be praying over every registration before we go live.</p>
+    <button type="button" class="btn btn--lg js-scroll-to-form" style="min-width: 180px;">Save my seat</button>
+  </div>
+</section>
+
+<!-- ============ SECTION 10: COMPLIANCE FOOTER ============ -->
+<footer style="background: var(--tf-ink); padding: 40px 20px 100px;">
+  <div style="max-width: 680px; margin: 0 auto; display: flex; flex-direction: column; gap: 18px;">
+    <img src="assets/10FoldFounders-dark-white.png" alt="10Fold Founders" style="width: 130px; height: auto;">
+    <div style="display: flex; gap: 18px; flex-wrap: wrap; font-size: 13px;">
+      <a href="#" style="color: var(--tf-sky);">Privacy policy</a>
+      <a href="#" style="color: var(--tf-sky);">Terms of service</a>
+      <a href="#" style="color: var(--tf-sky);">Contact</a>
+    </div>
+    <p style="margin: 0; font-size: 12px; line-height: 1.6; color: var(--tf-steel);">This site is not a part of the Facebook or Meta websites. This workshop is not endorsed by Meta in any way.</p>
+    <p style="margin: 0; font-size: 12px; line-height: 1.6; color: var(--tf-steel);">This workshop is education. It is not a promise of business results or income.</p>
+    <p style="margin: 0; font-size: 12px; color: var(--tf-steel);">© 2026 10Fold Founders</p>
+  </div>
+</footer>
+
+<!-- ============ STICKY MOBILE CTA BAR ============ -->
+<div id="sticky-cta" hidden style="position: fixed; bottom: 0; left: 0; right: 0; z-index: 50; background: var(--tf-white); border-top: 1px solid var(--border-hairline); box-shadow: 0 -4px 16px rgba(27,35,80,0.08); padding: 10px 16px; display: flex; align-items: center; justify-content: space-between; gap: 12px; animation: tfFadeUp 0.2s cubic-bezier(0.4,0,0.2,1);">
+  <span style="font-size: 13px; font-weight: 600; color: var(--tf-ink); line-height: 1.3;">Free live workshop&nbsp;·&nbsp;Tue July 28, 8pm ET</span>
+  <button type="button" class="btn btn--sm js-scroll-to-form" style="min-width: 130px;">Save my seat</button>
+</div>
+
+<script>
+(function () {
+  'use strict';
+
+  /* ---------- Headline variant: ?a=faith|profit|time (default profit) ---------- */
+  var params = new URLSearchParams(window.location.search);
+  var p = params.get('a');
+  var variant = (p === 'faith' || p === 'profit' || p === 'time') ? p : 'profit';
+  document.documentElement.setAttribute('data-variant', variant);
+  var heroes = document.querySelectorAll('.hero-variant');
+  for (var i = 0; i < heroes.length; i++) {
+    heroes[i].hidden = heroes[i].getAttribute('data-variant') !== variant;
+  }
+
+  /* ---------- Countdown to live start (Tue Jul 28, 2026, 8pm ET) ---------- */
+  var liveStart = new Date('2026-07-28T20:00:00-04:00').getTime();
+  var countdownEl = document.getElementById('countdown');
+  function countdownText() {
+    var ms = liveStart - Date.now();
+    if (ms <= 0) return 'We are live now.';
+    var mins = Math.floor(ms / 60000);
+    var d = Math.floor(mins / 1440);
+    var h = Math.floor((mins % 1440) / 60);
+    var m = mins % 60;
+    return 'Live in ' + d + (d === 1 ? ' day, ' : ' days, ') +
+      h + (h === 1 ? ' hour, ' : ' hours, ') +
+      m + (m === 1 ? ' minute' : ' minutes');
+  }
+  function renderCountdown() { countdownEl.textContent = countdownText(); }
+  renderCountdown();
+  setInterval(renderCountdown, 60000);
+
+  /* ---------- FAQ accordion ---------- */
+  var faqs = [
+    { q: 'Is this a sales pitch?', a: "It's a working session. You'll spend the time writing your own Aspiration Statement, not watching slides about us. At the very end we'll take two minutes to tell you about the 10Fold Founders community. That's it." },
+    { q: 'Is it really free?', a: 'Yes. Name and email get you in. No card, nothing to buy to participate.' },
+    { q: "What if I can't make it live?", a: 'Register anyway. Everyone registered gets the replay link, and it stays live for 48 hours.' },
+    { q: 'How long is it?', a: '45 minutes. We start on time and we end on time. However, we sometimes have a little extra window for a short Q&A.' },
+    { q: 'Who is this for?', a: "Founders and owners. Industries include: Trades, Professional Services, Home Services, Local and Main St. Businesses. Faith is explicit here: we close in prayer and we talk plainly about stewardship. If that's not for you, no hard feelings, this just isn't your room." },
+    { q: 'Do I need to bring anything?', a: "Something to write with. That's it. We'll put everything on screen." }
+  ];
+  var faqList = document.getElementById('faq-list');
+  var openFaq = -1;
+  faqs.forEach(function (faq, idx) {
+    var item = document.createElement('div');
+    item.style.cssText = 'background: var(--tf-white); border: 1px solid var(--border-hairline); border-radius: 12px; overflow: hidden;';
+
+    var btn = document.createElement('button');
+    btn.type = 'button';
+    btn.setAttribute('aria-expanded', 'false');
+    btn.style.cssText = 'display: flex; align-items: center; justify-content: space-between; gap: 12px; width: 100%; text-align: left; background: none; border: none; cursor: pointer; padding: 16px 18px; font-family: var(--tf-font-body); font-weight: 600; font-size: 15px; color: var(--tf-ink);';
+
+    var q = document.createElement('span');
+    q.textContent = faq.q;
+    var chevron = document.createElement('span');
+    chevron.textContent = '⌄';
+    chevron.style.cssText = 'flex: none; font-size: 18px; line-height: 1; color: var(--tf-azure-strong); transition: transform 200ms cubic-bezier(0.4,0,0.2,1);';
+    btn.appendChild(q);
+    btn.appendChild(chevron);
+
+    var answer = document.createElement('p');
+    answer.textContent = faq.a;
+    answer.hidden = true;
+    answer.style.cssText = 'margin: 0; padding: 0 18px 16px; font-size: 15px; line-height: 1.6; color: var(--tf-slate);';
+
+    btn.addEventListener('click', function () {
+      openFaq = (openFaq === idx) ? -1 : idx;
+      var panels = faqList.querySelectorAll('[data-faq-panel]');
+      var buttons = faqList.querySelectorAll('[data-faq-btn]');
+      var chevrons = faqList.querySelectorAll('[data-faq-chevron]');
+      for (var j = 0; j < panels.length; j++) {
+        var isOpen = (openFaq === j);
+        panels[j].hidden = !isOpen;
+        buttons[j].setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+        chevrons[j].style.transform = isOpen ? 'rotate(180deg)' : 'none';
+        if (isOpen) panels[j].style.animation = 'tfFadeUp 0.2s cubic-bezier(0.4,0,0.2,1)';
+      }
+    });
+
+    btn.setAttribute('data-faq-btn', '');
+    chevron.setAttribute('data-faq-chevron', '');
+    answer.setAttribute('data-faq-panel', '');
+
+    item.appendChild(btn);
+    item.appendChild(answer);
+    faqList.appendChild(item);
+  });
+
+  /* ---------- Scroll to form + focus first field ---------- */
+  function scrollToForm() {
+    var el = document.getElementById('register');
+    if (!el) return;
+    var top = el.getBoundingClientRect().top + window.scrollY - 16;
+    window.scrollTo({ top: top, behavior: 'smooth' });
+    var first = el.querySelector('input');
+    if (first) setTimeout(function () { first.focus({ preventScroll: true }); }, 450);
+  }
+  var scrollBtns = document.querySelectorAll('.js-scroll-to-form');
+  for (var s = 0; s < scrollBtns.length; s++) {
+    scrollBtns[s].addEventListener('click', scrollToForm);
+  }
+
+  /* ---------- Sticky CTA bar: show once the form scrolls out of view ---------- */
+  var sticky = document.getElementById('sticky-cta');
+  var formEl = document.getElementById('register');
+  if ('IntersectionObserver' in window && formEl) {
+    var observer = new IntersectionObserver(function (entries) {
+      sticky.hidden = entries[0].isIntersecting;
+    }, { threshold: 0 });
+    observer.observe(formEl);
+  }
+
+  /* ---------- Form validation + redirect ---------- */
+  var form = document.getElementById('register-form');
+  function setError(fieldName, message) {
+    var field = form.querySelector('[data-field="' + fieldName + '"]');
+    var hint = field.querySelector('.hint');
+    if (message) {
+      field.classList.add('is-error');
+      hint.textContent = message;
+      hint.hidden = false;
+    } else {
+      field.classList.remove('is-error');
+    }
+  }
+  // Clear an error as soon as the field is edited.
+  ['first_name', 'email'].forEach(function (name) {
+    form.querySelector('#' + name).addEventListener('input', function () {
+      var field = form.querySelector('[data-field="' + name + '"]');
+      if (field.classList.contains('is-error')) {
+        field.classList.remove('is-error');
+        var hint = field.querySelector('.hint');
+        hint.hidden = true;
+      }
+    });
+  });
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var firstName = form.first_name.value.trim();
+    var email = form.email.value.trim();
+    var phone = form.phone.value.trim();
+
+    var ok = true;
+    if (!firstName) { setError('first_name', 'Add your first name'); ok = false; }
+    if (!/^\S+@\S+\.\S+$/.test(email)) { setError('email', 'Add a valid email'); ok = false; }
+    if (!ok) return;
+
+    // FORM ACTION: GHL form embed or POST endpoint, TBD.
+    // Never lose the lead to a failed redirect; the form submit is the conversion.
+    var skipped = phone ? '' : '?askphone=1';
+    window.location.href = 'thanks.html' + skipped;
+  });
+})();
+</script>
+</body>
+</html>

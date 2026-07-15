@@ -1,0 +1,178 @@
+/* ============================================================
+ * 10Fold Founders — Workshop landing page
+ * Standalone implementation of Workshop.dc.html
+ * Design tokens are the v2 (indigo-led) palette from the
+ * 10Fold Founders design system.
+ * ============================================================ */
+
+:root {
+  /* Blues */
+  --tf-sky:          #C9DCF0;
+  --tf-steel:        #82AAD0;
+  --tf-azure:        #3B82E6;
+  --tf-azure-strong: #2563C4;
+  --tf-ink:          #1B2350;
+
+  /* Accents */
+  --tf-purple:  #7C4DE0;
+  --tf-mustard: #D6A22E;
+
+  /* Cool neutrals */
+  --tf-canvas: #F7F9FC;
+  --tf-cloud:  #EEF2F7;
+  --tf-slate:  #4C5666;
+  --tf-white:  #FFFFFF;
+
+  /* Gradients */
+  --tf-gradient-cta:      linear-gradient(135deg, #3B82E6 0%, #2563C4 100%);
+  --tf-gradient-founders: linear-gradient(165deg, #82AAD0 0%, #5E86B5 16%, #3C5C80 40%, #21384F 70%, #152A3C 100%);
+  --tf-gradient-warm:     linear-gradient(135deg, #D6A22E 0%, #C08A1E 100%);
+  --tf-gradient-dark:     linear-gradient(160deg, #1B2350 0%, #131A3C 100%);
+
+  /* Lines + feedback */
+  --border-hairline: rgba(27, 35, 80, 0.10);
+  --state-success:   #1F8A5B;
+  --state-danger:    #C0413B;
+
+  /* Type */
+  --tf-font-headline: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  --tf-font-body:     'Inter', system-ui, -apple-system, sans-serif;
+
+  /* Radii + motion */
+  --tf-radius-sm:   8px;
+  --tf-radius-card: 12px;
+  --tf-radius-lg:   20px;
+  --tf-ease:        cubic-bezier(0.4, 0, 0.2, 1);
+  --tf-dur:         200ms;
+}
+
+/* ============ Base ============ */
+html { scroll-behavior: smooth; }
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--tf-canvas);
+  color: var(--tf-ink);
+  font-family: var(--tf-font-body);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+input, textarea { box-sizing: border-box; }
+a { color: var(--tf-azure-strong); text-decoration: none; }
+a:hover { color: var(--tf-azure); }
+
+/* The hidden attribute must win over inline display values (variants, sticky bar, etc.) */
+[hidden] { display: none !important; }
+
+@keyframes tfFadeUp {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  * { animation: none !important; transition: none !important; }
+}
+
+/* ============ Layout helpers ============ */
+.tf-col { display: flex; flex-direction: column; }
+
+/* ============ Button (design-system Button) ============ */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-family: var(--tf-font-headline);
+  font-weight: 700;
+  line-height: 1;
+  text-decoration: none;
+  border: none;
+  border-radius: 100px;
+  cursor: pointer;
+  white-space: nowrap;
+  color: var(--tf-white);
+  background: var(--tf-gradient-cta);
+  font-size: 16px;
+  padding: 14px 28px;
+  transition: filter var(--tf-dur) var(--tf-ease), opacity var(--tf-dur) var(--tf-ease);
+}
+.btn:hover { filter: brightness(1.06); color: var(--tf-white); }
+.btn:active { filter: brightness(0.97); }
+.btn:focus-visible { outline: 3px solid var(--tf-azure); outline-offset: 2px; }
+.btn--sm { font-size: 14px; padding: 10px 20px; }
+.btn--lg { font-size: 18px; padding: 17px 36px; }
+.btn--full { width: 100%; }
+.btn--founders { background: var(--tf-gradient-founders); }
+.btn--outline {
+  background: transparent;
+  color: var(--tf-ink);
+  border: 1.5px solid var(--tf-ink);
+}
+.btn--outline:hover { background: rgba(27,35,80,0.05); color: var(--tf-ink); filter: none; }
+
+/* ============ Input (design-system Input) ============ */
+.field { display: flex; flex-direction: column; gap: 6px; font-family: var(--tf-font-body); }
+.field label {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--tf-ink);
+}
+.field input, .field textarea {
+  font-family: var(--tf-font-body);
+  font-size: 16px;
+  color: var(--tf-ink);
+  background: var(--tf-cloud);
+  border: 1.5px solid var(--tf-sky);
+  border-radius: var(--tf-radius-card);
+  padding: 12px 14px;
+  outline: none;
+  width: 100%;
+  transition: border-color var(--tf-dur) var(--tf-ease);
+}
+.field input::placeholder, .field textarea::placeholder { color: var(--tf-slate); }
+.field input:focus, .field textarea:focus { border-color: var(--tf-azure-strong); }
+.field .hint { font-size: 12px; color: var(--tf-slate); }
+.field.is-error input { border-color: var(--state-danger); }
+.field.is-error .hint { color: var(--state-danger); }
+
+/* ============ ChecklistItem (design-system ChecklistItem) ============ */
+.checklist { margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px; }
+.checklist li {
+  list-style: none;
+  background: var(--tf-cloud);
+  border-radius: var(--tf-radius-sm);
+  padding: 14px 16px;
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  font-family: var(--tf-font-body);
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--tf-ink);
+}
+.checklist li .mark {
+  flex: 0 0 26px;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: var(--tf-mustard);
+  color: var(--tf-ink);
+  font-family: var(--tf-font-headline);
+  font-weight: 800;
+  font-size: 13px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ============ Section rhythm ============ */
+section, footer { padding: 64px 20px; }
+.eyebrow {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+h1, h2 { text-wrap: balance; }
+p { text-wrap: pretty; }
