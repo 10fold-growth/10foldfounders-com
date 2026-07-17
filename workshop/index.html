@@ -62,7 +62,7 @@
     <!-- ============ SECTION 2: REGISTRATION FORM ============ -->
     <div id="register" style="background: var(--tf-white); border-radius: 20px; padding: 28px 24px; box-shadow: 0 8px 32px rgba(19,26,60,0.28); display: flex; flex-direction: column; gap: 16px; animation: tfFadeUp 0.4s cubic-bezier(0.4,0,0.2,1);">
       <h2 style="margin: 0; font-family: var(--tf-font-headline); font-weight: 700; font-size: 20px; color: var(--tf-ink);">Save your seat</h2>
-      <!-- FORM ACTION: GHL form embed or POST endpoint, TBD. On success, redirect to thanks.html -->
+      <!-- On submit, posts the lead to GoHighLevel, then redirects to thanks.html -->
       <form id="register-form" novalidate style="display: flex; flex-direction: column; gap: 14px;">
         <div class="field" data-field="first_name">
           <label for="first_name">First name</label>
@@ -74,12 +74,6 @@
           <input id="email" name="email" type="email" autocomplete="email" required>
           <span class="hint" hidden></span>
         </div>
-        <div class="field" data-field="phone">
-          <label for="phone">Mobile (optional)</label>
-          <input id="phone" name="phone" type="tel" autocomplete="tel">
-          <span class="hint">Add your number and we'll text you one reminder 15 minutes before we go live. That's it.</span>
-        </div>
-        <p style="margin: 0; font-size: 11px; line-height: 1.5; color: var(--tf-slate);">By entering your number you agree to receive a text reminder about this workshop. Message and data rates may apply. Reply STOP to opt out.</p>
         <button type="submit" class="btn btn--lg btn--full">Save my seat</button>
       </form>
       <p style="margin: 0; text-align: center; font-size: 13px; line-height: 1.55; color: var(--tf-slate);">Free. Live Thursday, July 30. Can't make it live? Register anyway, the replay runs for 48 hours.</p>
@@ -351,21 +345,36 @@
     });
   });
 
+  var WEBHOOK_URL = 'https://services.leadconnectorhq.com/hooks/1k8sTp5oODpHDFWpyIL6/webhook-trigger/3035fc75-b5c9-4533-92e8-957a19fa99c3';
+  var submitBtn = form.querySelector('button[type="submit"]');
+
   form.addEventListener('submit', function (e) {
     e.preventDefault();
     var firstName = form.first_name.value.trim();
     var email = form.email.value.trim();
-    var phone = form.phone.value.trim();
 
     var ok = true;
     if (!firstName) { setError('first_name', 'Add your first name'); ok = false; }
     if (!/^\S+@\S+\.\S+$/.test(email)) { setError('email', 'Add a valid email'); ok = false; }
     if (!ok) return;
 
-    // FORM ACTION: GHL form embed or POST endpoint, TBD.
-    // Never lose the lead to a failed redirect; the form submit is the conversion.
-    var skipped = phone ? '' : '?askphone=1';
-    window.location.href = 'thanks.html' + skipped;
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Saving your seat…';
+
+    // Send the lead to GoHighLevel. no-cors + urlencoded avoids a CORS preflight
+    // the webhook won't answer, and keepalive lets the POST finish through the
+    // redirect. The submit is the conversion, so we always continue to thanks.html.
+    var body = 'first_name=' + encodeURIComponent(firstName) + '&email=' + encodeURIComponent(email);
+    try {
+      fetch(WEBHOOK_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: body,
+        keepalive: true
+      });
+    } catch (err) {}
+    window.location.href = 'thanks.html';
   });
 })();
 </script>

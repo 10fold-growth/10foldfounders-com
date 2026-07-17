@@ -35,25 +35,9 @@
       </div>
     </div>
 
-    <!-- BLOCK 2: text reminder (only if they skipped the phone field) -->
-    <div id="phone-block" hidden style="background: var(--tf-white); border: 1px solid var(--border-hairline); border-radius: 12px; padding: 26px 24px; display: flex; flex-direction: column; gap: 14px; animation: tfFadeUp 0.35s cubic-bezier(0.4,0,0.2,1);">
-      <h2 style="margin: 0; font-family: var(--tf-font-headline); font-weight: 700; font-size: 20px; color: var(--tf-ink);">2. Want a text reminder?</h2>
-      <p style="margin: 0; font-size: 15px; line-height: 1.6; color: var(--tf-slate);">Drop your number and we'll text you 15 minutes before we start.</p>
-      <p id="phone-sent" hidden style="margin: 0; font-size: 15px; font-weight: 600; color: var(--state-success);">Got it. We'll text you Thursday.</p>
-      <form id="phone-form" novalidate style="display: flex; flex-direction: column; gap: 12px;">
-        <div style="display: flex; gap: 10px; flex-wrap: wrap;">
-          <div class="field" style="flex: 1; min-width: 200px;">
-            <input name="phone" type="tel" autocomplete="tel" placeholder="Mobile number">
-          </div>
-          <button type="submit" class="btn">Text me</button>
-        </div>
-        <p style="margin: 0; font-size: 11px; line-height: 1.5; color: var(--tf-slate);">By entering your number you agree to receive a text reminder about this workshop. Message and data rates may apply. Reply STOP to opt out.</p>
-      </form>
-    </div>
-
-    <!-- BLOCK 3: one question -->
+    <!-- BLOCK 2: one question -->
     <div style="background: var(--tf-white); border: 1px solid var(--border-hairline); border-radius: 12px; padding: 26px 24px; display: flex; flex-direction: column; gap: 14px; animation: tfFadeUp 0.4s cubic-bezier(0.4,0,0.2,1);">
-      <h2 style="margin: 0; font-family: var(--tf-font-headline); font-weight: 700; font-size: 20px; color: var(--tf-ink);"><span id="block-three-number">3</span>. One more thing, if you're willing</h2>
+      <h2 style="margin: 0; font-family: var(--tf-font-headline); font-weight: 700; font-size: 20px; color: var(--tf-ink);">2. One more thing, if you're willing</h2>
       <p style="margin: 0; font-size: 15px; line-height: 1.6; color: var(--tf-slate);">What's the biggest thing standing between you and a business that runs without you?</p>
       <p id="answer-sent" hidden style="margin: 0; font-size: 15px; font-weight: 600; color: var(--state-success);">Thank you. We read every answer, and it shapes what we spend the most time on.</p>
       <form id="answer-form" novalidate style="display: flex; flex-direction: column; gap: 12px;">
@@ -92,11 +76,6 @@
     location: 'Online (join link in your email)'
   };
 
-  /* ?askphone=1 means they skipped the phone field on the registration form. */
-  var askPhone = new URLSearchParams(window.location.search).get('askphone') === '1';
-  document.getElementById('phone-block').hidden = !askPhone;
-  document.getElementById('block-three-number').textContent = askPhone ? '3' : '2';
-
   function googleUrl() {
     return 'https://calendar.google.com/calendar/render?action=TEMPLATE' +
       '&text=' + encodeURIComponent(event.title) +
@@ -123,16 +102,6 @@
   });
   document.getElementById('cal-apple').addEventListener('click', downloadIcs);
   document.getElementById('cal-outlook').addEventListener('click', downloadIcs);
-
-  /* Phone reminder submit */
-  var phoneForm = document.getElementById('phone-form');
-  phoneForm.addEventListener('submit', function (e) {
-    e.preventDefault();
-    if (!phoneForm.phone.value.trim()) return;
-    // FORM ACTION: posts to the same GHL contact, endpoint TBD
-    phoneForm.hidden = true;
-    document.getElementById('phone-sent').hidden = false;
-  });
 
   /* One-question submit */
   var answerForm = document.getElementById('answer-form');
