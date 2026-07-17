@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Free live workshop from 10Fold Founders: build a business that serves your life</title>
-  <meta name="description" content="A free 45-minute live working session with Arthur Tew. Write the first page of a business that runs without running you. Tuesday, July 28 at 8pm ET.">
+  <meta name="description" content="A free 45-minute live working session with Arthur Tew. Write the first page of a business that runs without running you. Thursday, July 30 at 2pm ET.">
   <meta name="robots" content="noindex">
   <!-- ANALYTICS: Meta pixel goes here. Lead event fires on the thanks page, not on button click. -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -22,7 +22,7 @@
       <div style="display: flex; align-items: center; gap: 12px; flex-wrap: wrap;">
         <span style="display: inline-flex; align-items: center; background: var(--tf-mustard); color: var(--tf-ink); font-family: var(--tf-font-body); font-weight: 700; font-size: 12px; letter-spacing: 1.5px; text-transform: uppercase; padding: 7px 14px; border-radius: 9999px;">Free live workshop</span>
       </div>
-      <p style="margin: 0; color: var(--tf-steel); font-size: 15px; font-weight: 500;">Tuesday, July 28 at 8pm ET&nbsp;·&nbsp;45 minutes&nbsp;·&nbsp;live with Arthur Tew</p>
+      <p style="margin: 0; color: var(--tf-steel); font-size: 15px; font-weight: 500;">Thursday, July 30 at 2pm ET&nbsp;·&nbsp;45 minutes&nbsp;·&nbsp;live with Arthur Tew</p>
 
       <!-- VARIANT A (faith): ?a=faith -->
       <div class="hero-variant" data-variant="faith" hidden style="display: flex; flex-direction: column; gap: 14px;">
@@ -82,7 +82,7 @@
         <p style="margin: 0; font-size: 11px; line-height: 1.5; color: var(--tf-slate);">By entering your number you agree to receive a text reminder about this workshop. Message and data rates may apply. Reply STOP to opt out.</p>
         <button type="submit" class="btn btn--lg btn--full">Save my seat</button>
       </form>
-      <p style="margin: 0; text-align: center; font-size: 13px; line-height: 1.55; color: var(--tf-slate);">Free. Live Tuesday, July 28. Can't make it live? Register anyway, the replay runs for 48 hours.</p>
+      <p style="margin: 0; text-align: center; font-size: 13px; line-height: 1.55; color: var(--tf-slate);">Free. Live Thursday, July 30. Can't make it live? Register anyway, the replay runs for 48 hours.</p>
     </div>
   </div>
 </section>
@@ -169,7 +169,7 @@
 <!-- ============ SECTION 7: URGENCY STRIP (sky wash) ============ -->
 <section style="background: var(--tf-sky); padding: 36px 20px;">
   <div style="max-width: 680px; margin: 0 auto; display: flex; flex-direction: column; gap: 14px; align-items: flex-start;">
-    <p style="margin: 0; font-family: var(--tf-font-headline); font-weight: 700; font-size: 19px; color: var(--tf-ink);">Live Tuesday, July 28 at 8pm ET.</p>
+    <p style="margin: 0; font-family: var(--tf-font-headline); font-weight: 700; font-size: 19px; color: var(--tf-ink);">Live Thursday, July 30 at 2pm ET.</p>
     <p style="margin: 0; font-size: 15px; line-height: 1.6; color: var(--tf-ink);">The replay stays up for 48 hours after we finish, then it comes down. Registering gets you the live link and the replay.</p>
     <p id="countdown" style="margin: 0; font-size: 13px; font-weight: 600; color: var(--tf-ink); opacity: 0.75;"></p>
     <button type="button" class="btn js-scroll-to-form" style="min-width: 160px;">Save my seat</button>
@@ -210,7 +210,7 @@
 
 <!-- ============ STICKY MOBILE CTA BAR ============ -->
 <div id="sticky-cta" hidden style="position: fixed; bottom: 0; left: 0; right: 0; z-index: 50; background: var(--tf-white); border-top: 1px solid var(--border-hairline); box-shadow: 0 -4px 16px rgba(27,35,80,0.08); padding: 10px 16px; display: flex; align-items: center; justify-content: space-between; gap: 12px; animation: tfFadeUp 0.2s cubic-bezier(0.4,0,0.2,1);">
-  <span style="font-size: 13px; font-weight: 600; color: var(--tf-ink); line-height: 1.3;">Free live workshop&nbsp;·&nbsp;Tue July 28, 8pm ET</span>
+  <span style="font-size: 13px; font-weight: 600; color: var(--tf-ink); line-height: 1.3;">Free live workshop&nbsp;·&nbsp;Thu July 30, 2pm ET</span>
   <button type="button" class="btn btn--sm js-scroll-to-form" style="min-width: 130px;">Save my seat</button>
 </div>
 
@@ -228,8 +228,8 @@
     heroes[i].hidden = heroes[i].getAttribute('data-variant') !== variant;
   }
 
-  /* ---------- Countdown to live start (Tue Jul 28, 2026, 8pm ET) ---------- */
-  var liveStart = new Date('2026-07-28T20:00:00-04:00').getTime();
+  /* ---------- Countdown to live start (Thu Jul 30, 2026, 2pm ET) ---------- */
+  var liveStart = new Date('2026-07-30T14:00:00-04:00').getTime();
   var countdownEl = document.getElementById('countdown');
   function countdownText() {
     var ms = liveStart - Date.now();
