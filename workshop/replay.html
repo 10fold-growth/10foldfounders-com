@@ -75,7 +75,7 @@
         <div style="position: relative;">
           <span style="display: inline-flex; align-items: center; gap: 8px; background: var(--tf-mustard); color: var(--tf-ink); font-family: var(--tf-font-headline); font-weight: 800; font-size: 13px; letter-spacing: 0.5px; text-transform: uppercase; padding: 8px 16px; border-radius: 100px;">Founding offer &middot; 61% off</span>
 
-          <!-- Live 48-hour countdown (per visitor, from first view) -->
+          <!-- Live countdown to a fixed deadline: 3:00pm ET Sat Aug 1, 2026 -->
           <div id="offer-countdown" style="margin-top: 22px;" aria-live="off">
             <p class="cd-label">Offer ends in</p>
             <div class="cd-boxes">
@@ -115,18 +115,8 @@
 <script>
 (function () {
   'use strict';
-  var KEY = 'tf_replay_offer_start';
-  var WINDOW_MS = 48 * 60 * 60 * 1000; // 48 hours
-
-  // First view stamps the start time; later views count down from that same moment.
-  var start;
-  try {
-    start = parseInt(localStorage.getItem(KEY), 10);
-    if (!start || isNaN(start)) { start = Date.now(); localStorage.setItem(KEY, String(start)); }
-  } catch (e) {
-    start = Date.now(); // storage blocked (e.g. private mode) — count down from this load
-  }
-  var deadline = start + WINDOW_MS;
+  // Fixed 48-hour window: started 3:00pm ET Thu Jul 30, ends 3:00pm ET Sat Aug 1, 2026.
+  var deadline = new Date('2026-08-01T15:00:00-04:00').getTime();
 
   var wrap = document.getElementById('offer-countdown');
   var ended = document.getElementById('offer-ended');
