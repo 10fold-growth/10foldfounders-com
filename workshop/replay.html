@@ -30,6 +30,13 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap">
   <link rel="stylesheet" href="styles.css">
+  <style>
+    .cd-label { margin: 0; font-family: var(--tf-font-body); font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; color: rgba(201,220,240,0.75); }
+    .cd-boxes { display: flex; justify-content: center; gap: 10px; margin-top: 10px; }
+    .cd-box { display: flex; flex-direction: column; align-items: center; gap: 4px; min-width: 60px; padding: 10px 8px; background: rgba(201,220,240,0.12); border: 1px solid rgba(201,220,240,0.18); border-radius: 12px; }
+    .cd-num { font-family: var(--tf-font-headline); font-weight: 800; font-size: 1.7rem; line-height: 1; color: var(--tf-white); font-variant-numeric: tabular-nums; }
+    .cd-unit { font-family: var(--tf-font-body); font-size: 10px; letter-spacing: 1px; text-transform: uppercase; color: rgba(201,220,240,0.75); }
+  </style>
 </head>
 <body>
 
@@ -66,7 +73,19 @@
       <div style="position: relative; background: var(--tf-gradient-dark); padding: clamp(30px, 4vw, 42px) 32px; text-align: center; overflow: hidden;">
         <div style="position: absolute; top: -40%; left: 50%; transform: translateX(-50%); width: 600px; max-width: 130%; height: 400px; background: radial-gradient(ellipse at center, rgba(59,130,230,0.34), transparent 70%); pointer-events: none;"></div>
         <div style="position: relative;">
-          <span style="display: inline-flex; align-items: center; gap: 8px; background: var(--tf-mustard); color: var(--tf-ink); font-family: var(--tf-font-headline); font-weight: 800; font-size: 13px; letter-spacing: 0.5px; text-transform: uppercase; padding: 8px 16px; border-radius: 100px;">61% off &middot; next 48 hours</span>
+          <span style="display: inline-flex; align-items: center; gap: 8px; background: var(--tf-mustard); color: var(--tf-ink); font-family: var(--tf-font-headline); font-weight: 800; font-size: 13px; letter-spacing: 0.5px; text-transform: uppercase; padding: 8px 16px; border-radius: 100px;">Founding offer &middot; 61% off</span>
+
+          <!-- Live 48-hour countdown (per visitor, from first view) -->
+          <div id="offer-countdown" style="margin-top: 22px;" aria-live="off">
+            <p class="cd-label">Offer ends in</p>
+            <div class="cd-boxes">
+              <div class="cd-box"><span class="cd-num" id="cd-h">48</span><span class="cd-unit">hrs</span></div>
+              <div class="cd-box"><span class="cd-num" id="cd-m">00</span><span class="cd-unit">min</span></div>
+              <div class="cd-box"><span class="cd-num" id="cd-s">00</span><span class="cd-unit">sec</span></div>
+            </div>
+          </div>
+          <p id="offer-ended" hidden style="margin: 22px 0 0; font-family: var(--tf-font-headline); font-weight: 700; font-size: 1rem; color: var(--tf-mustard);">This founding offer has ended.</p>
+
           <div style="display: flex; align-items: baseline; justify-content: center; gap: 12px; flex-wrap: wrap; margin-top: 22px;">
             <span style="font-family: var(--tf-font-headline); font-weight: 800; color: var(--tf-white); font-size: clamp(3.2rem, 9vw, 4.4rem); line-height: 1; letter-spacing: -1.5px;">$97</span>
             <span style="font-family: var(--tf-font-body); font-size: 1.15rem; color: #C9DCF0;">/month</span>
@@ -92,6 +111,50 @@
     <p style="margin: 0; font-size: 12px; color: var(--tf-steel);">&copy; 2026 10Fold Founders</p>
   </div>
 </footer>
+
+<script>
+(function () {
+  'use strict';
+  var KEY = 'tf_replay_offer_start';
+  var WINDOW_MS = 48 * 60 * 60 * 1000; // 48 hours
+
+  // First view stamps the start time; later views count down from that same moment.
+  var start;
+  try {
+    start = parseInt(localStorage.getItem(KEY), 10);
+    if (!start || isNaN(start)) { start = Date.now(); localStorage.setItem(KEY, String(start)); }
+  } catch (e) {
+    start = Date.now(); // storage blocked (e.g. private mode) — count down from this load
+  }
+  var deadline = start + WINDOW_MS;
+
+  var wrap = document.getElementById('offer-countdown');
+  var ended = document.getElementById('offer-ended');
+  var elH = document.getElementById('cd-h');
+  var elM = document.getElementById('cd-m');
+  var elS = document.getElementById('cd-s');
+  function pad(n) { return (n < 10 ? '0' : '') + n; }
+
+  var timer;
+  function tick() {
+    var ms = deadline - Date.now();
+    if (ms <= 0) {
+      if (wrap) wrap.hidden = true;
+      if (ended) ended.hidden = false;
+      if (timer) clearInterval(timer);
+      return;
+    }
+    var s = Math.floor(ms / 1000);
+    var h = Math.floor(s / 3600); s -= h * 3600;
+    var m = Math.floor(s / 60); s -= m * 60;
+    elH.textContent = pad(h);
+    elM.textContent = pad(m);
+    elS.textContent = pad(s);
+  }
+  tick();
+  timer = setInterval(tick, 1000);
+})();
+</script>
 
 </body>
 </html>
