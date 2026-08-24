@@ -1,0 +1,19 @@
+# Notification, not a gate. "Require review from Code Owners" stays OFF
+# at two people - it would block self-merges.
+# Branch protection: PR required, 0 approvals, build check required.
+
+*                    @sherpaart @sherpa-josh
+
+/supabase/           @sherpaart
+/lib/db/             @sherpaart
+/lib/supabase.*      @sherpaart
+/app/api/            @sherpaart
+/pages/api/          @sherpaart
+/.github/            @sherpaart
+/vercel.json         @sherpaart
+/next.config.*       @sherpaart
+/SITE.md             @sherpaart
+/.env.example        @sherpaart
+/styles/tokens.*     @sherpaart
+/tokens/             @sherpaart
+/tailwind.config.*   @sherpaart
