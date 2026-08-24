@@ -1,31 +1,157 @@
 name: build
+
+# THE required status check. This single job is what makes zero-approval
+# merging safe: nothing reaches main without passing it.
+#
+# It is ONE job called `build` on purpose. Branch protection requires a check
+# named `build`; if this were split across jobs, a skipped job would leave a
+# required check permanently pending and the pull request could never merge.
+#
+# The guard steps run for EVERY site, including plain static HTML ones, so a
+# site with nothing to compile still gets a real gate rather than a rubber
+# stamp. The compile steps only run when there is something to compile.
+
 on:
   pull_request:
+    branches: [main]
   push:
     branches: [main]
+
 jobs:
   build:
     name: build
     runs-on: ubuntu-latest
+    # The template repo's own SITE.md is deliberately unfilled, so this check
+    # would sit red on the template forever and read as broken. Skip it there.
+    # Every repo CREATED from the template runs it normally.
+    if: github.event.repository.is_template != true
     steps:
       - uses: actions/checkout@v4
-      - name: Detect project type
-        id: t
+
+      # ---------------------------------------------------------------
+      # Guards — every site, every time
+      # ---------------------------------------------------------------
+      - name: No .env files may be tracked in git
         run: |
-          if [ -f package.json ]; then echo "node=yes" >> $GITHUB_OUTPUT; else echo "node=no" >> $GITHUB_OUTPUT; fi
+          # .env.example and friends are fine - they hold names, not values.
+          BAD="$(git ls-files \
+                 | grep -E '(^|/)\.env($|\.local$|\.production|\.development|\.test)' \
+                 || true)"
+          if [ -n "$BAD" ]; then
+            echo "::error::These files are tracked in git and must not be:"
+            echo "$BAD"
+            echo ""
+            echo "Any key inside them is LEAKED. Rotate it, then: git rm --cached <file>"
+            echo "Adding it to .gitignore does NOT remove it from history."
+            exit 1
+          fi
+          echo "ok - no .env files tracked"
+
+      - name: No obvious secrets committed
+        run: |
+          FOUND=0
+          # Long-lived credential shapes. Deliberately narrow to avoid false alarms.
+          PATTERNS='sk-ant-api[0-9]{2}-|sb_secret_[A-Za-z0-9_-]{20,}|AKIA[0-9A-Z]{16}|-----BEGIN [A-Z ]*PRIVATE KEY-----|ghp_[A-Za-z0-9]{36}'
+          while IFS= read -r f; do
+            case "$f" in
+              *.min.js|*.map|package-lock.json|yarn.lock|pnpm-lock.yaml) continue ;;
+            esac
+            if grep -a -E -q "$PATTERNS" "$f" 2>/dev/null; then
+              echo "::error file=$f::Looks like a real credential is committed here."
+              FOUND=1
+            fi
+          done < <(git ls-files)
+          if [ "$FOUND" -eq 0 ]; then echo "ok - no credential patterns found"; fi
+          exit $FOUND
+
+      - name: Search engines are not blocked
+        run: |
+          for f in robots.txt public/robots.txt static/robots.txt; do
+            if [ -f "$f" ]; then
+              if grep -E -q '^[[:space:]]*Disallow:[[:space:]]*/[[:space:]]*$' "$f"; then
+                echo "::error file=$f::'Disallow: /' hides the whole site from search engines."
+                echo "This is the classic staging-config-shipped-to-production mistake."
+                echo "If it is deliberate, record why in SITE.md."
+                exit 1
+              fi
+              echo "ok - $f does not block indexing"
+            fi
+          done
+          echo "robots check complete"
+
+      - name: The site record exists and has been filled in
+        run: |
+          if [ ! -f SITE.md ]; then
+            echo "::error::SITE.md is missing. Every site carries its own record."
+            exit 1
+          fi
+          if head -5 SITE.md | grep -q 'TEMPLATE - NOT YET FILLED IN'; then
+            echo "::error file=SITE.md::SITE.md is still the blank template."
+            echo "Fill in the header fields, then delete the 'TEMPLATE - NOT YET"
+            echo "FILLED IN' line at the top. Genuine unknowns stay as TBD with a"
+            echo "note on who is chasing them - that is fine. An empty record is not."
+            exit 1
+          fi
+          echo "ok - SITE.md present and adopted"
+
+      # ---------------------------------------------------------------
+      # Compile — only if there is something to compile
+      # ---------------------------------------------------------------
+      - name: Is there anything to build?
+        id: detect
+        run: |
+          if [ -f package.json ]; then
+            echo "node=true" >> "$GITHUB_OUTPUT"
+            echo "package.json found"
+          else
+            echo "node=false" >> "$GITHUB_OUTPUT"
+            echo "No package.json - static site. The guards above are the gate."
+          fi
+
       - uses: actions/setup-node@v4
-        if: steps.t.outputs.node == 'yes'
+        if: steps.detect.outputs.node == 'true'
         with:
-          node-version: 22
+          node-version: '20'
+
       - name: Install
-        if: steps.t.outputs.node == 'yes'
-        run: npm ci || npm install
+        if: steps.detect.outputs.node == 'true'
+        run: |
+          if [ -f package-lock.json ]; then npm ci; else npm install; fi
+
+      # Frameworks that prerender at build time (Next.js) instantiate their
+      # clients during `build`, so these variables must EXIST or the build
+      # fails on perfectly good code. These are placeholders, never real
+      # values - and the NAMES are read from the repo's own .env.example, so
+      # this step needs no editing per site.
+      - name: Build-time placeholder env
+        if: steps.detect.outputs.node == 'true'
+        run: |
+          SRC=""
+          for f in .env.example .env.local.example .env.sample; do
+            [ -f "$f" ] && SRC="$f" && break
+          done
+          if [ -z "$SRC" ]; then
+            echo "No .env.example found - nothing to stub."
+            exit 0
+          fi
+          while IFS= read -r line || [ -n "$line" ]; do
+            case "$line" in ''|\#*) continue ;; esac
+            k="${line%%=*}"
+            k="$(echo "$k" | tr -d '[:space:]')"
+            [ -z "$k" ] && continue
+            case "$k" in
+              *URL*|*Url*|*url*) v="https://placeholder.example.com" ;;
+              *) v="placeholder-value-for-ci" ;;
+            esac
+            echo "$k=$v" >> .env
+            echo "  stubbed $k"
+          done < "$SRC"
+
       - name: Build
-        if: steps.t.outputs.node == 'yes'
-        run: npm run build --if-present
-        env:
-          NEXT_PUBLIC_SUPABASE_URL: https://placeholder.supabase.co
-          NEXT_PUBLIC_SUPABASE_ANON_KEY: placeholder
-      - name: Static check
-        if: steps.t.outputs.node == 'no'
-        run: test -f index.html && echo "static site ok"
+        if: steps.detect.outputs.node == 'true'
+        run: |
+          if node -e "process.exit(require('./package.json').scripts && require('./package.json').scripts.build ? 0 : 1)"; then
+            npm run build
+          else
+            echo "No build script in package.json - nothing to compile."
+          fi
