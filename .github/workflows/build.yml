@@ -1,0 +1,31 @@
+name: build
+on:
+  pull_request:
+  push:
+    branches: [main]
+jobs:
+  build:
+    name: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Detect project type
+        id: t
+        run: |
+          if [ -f package.json ]; then echo "node=yes" >> $GITHUB_OUTPUT; else echo "node=no" >> $GITHUB_OUTPUT; fi
+      - uses: actions/setup-node@v4
+        if: steps.t.outputs.node == 'yes'
+        with:
+          node-version: 22
+      - name: Install
+        if: steps.t.outputs.node == 'yes'
+        run: npm ci || npm install
+      - name: Build
+        if: steps.t.outputs.node == 'yes'
+        run: npm run build --if-present
+        env:
+          NEXT_PUBLIC_SUPABASE_URL: https://placeholder.supabase.co
+          NEXT_PUBLIC_SUPABASE_ANON_KEY: placeholder
+      - name: Static check
+        if: steps.t.outputs.node == 'no'
+        run: test -f index.html && echo "static site ok"
